@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileAttribute;
 import java.nio.file.attribute.PosixFilePermissions;
-import java.util.Scanner;
 
 public class Archivos {
 
@@ -14,10 +13,10 @@ public class Archivos {
         System.out.println("\n>> Inicio de ejecución: ");
     }
 
-    private static String archivo = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\testfile.txt";
-    private static String carpeta = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\testdir";
-    private static String directorio = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1\\dir2\\dir3";
-    static String[] directorios = {
+    private static final String ARCHIVO = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\testfile.txt";
+    private static final String CARPETA = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\test";
+    //    private static final String DIRECTORIO = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1\\dir2\\dir3";
+    static final String[] DIRECTORIOS = {
             "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1",
             "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1\\dir2",
             "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1\\dir2\\dir3"};
@@ -26,12 +25,7 @@ public class Archivos {
      * Variables para modificar formato
      */
     private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_BLUE = "\u001B[34m";
-    private static final String ANSI_PURPLE = "\u001B[35m";
-    private static final String ANSI_CYAN = "\u001B[36m";
 
     /**
      * Crea un archivo; si el archivo ya existe muestra un mensaje por pantalla, y si no lo crea.
@@ -45,27 +39,23 @@ public class Archivos {
 
         if (crearArchivo.exists()) {
             System.out.println("El archivo ya existe");
-        } else {
-            crearArchivo.createNewFile();
+        } else if (crearArchivo.createNewFile()) {
             System.out.println("El archivo ha sido creado");
         }
-
     }
 
     /**
      * Crea una carpeta dentro de un directorio; si la carpeta existe muestra un mensaje por pantalla y si no existe la crea y muestra un mensaje por pantalla.
      *
      * @param dir ruta del directorio
-     * @throws IOException lanza una excepción si no se ha podido crear la carpeta.
      */
-    public void crearCarpeta(String dir) throws IOException {
+    public void crearCarpeta(String dir) {
 
         File crearArchivo = new File(dir);
 
         if (crearArchivo.exists()) {
             System.out.println("El archivo ya existe");
-        } else {
-            crearArchivo.mkdir();
+        } else if (crearArchivo.mkdir()) {
             System.out.println("La carpeta ha sido creada");
         }
     }
@@ -74,32 +64,38 @@ public class Archivos {
      * Crea un directorio, y los subsiguientes directorios.
      *
      * @param dirs recibe la ruta de un directorio, o un directorio y varios subdirectorios.
-     * @throws IOException lanza una excepción si no se ha podido crear el directorio.
      */
-    public void crearDirectorios(String dirs) throws IOException {
+    public void crearDirectorios(String dirs) {
         File dir = new File(dirs);
 
-        dir.mkdirs();
+        if (dir.mkdirs()) {
+            System.out.println("El archivo ha sido creado");
+        } else {
+            System.out.println("El archivo no ha podido crearse");
+        }
+
     }
 
     /**
      * Elimina un directorio
      *
      * @param dir recibe tipo String con la ruta.
-     * @throws IOException lanza una excepción si no se ha podido eliminar.
      */
-    public void eliminarDirectorio(String dir) throws IOException {
+    public void eliminarDirectorio(String dir) {
         File file = new File(dir);
 
-        file.delete();
+        if (file.delete()) {
+            System.out.println("El archivo ha sido eliminado");
+        } else {
+            System.out.println("El archivo no se ha podido eliminar");
+        }
     }
 
     public void eliminarArchivo() {
 
-        File eliminar = new File(archivo);
+        File eliminar = new File(ARCHIVO);
 
-        if (eliminar.exists()) {
-            eliminar.delete();
+        if (eliminar.delete()) {
             System.out.println("El archivo ha sido eliminado");
         } else {
             System.out.println("El archivo no existe");
@@ -108,10 +104,9 @@ public class Archivos {
 
     public void eliminarCarpeta() {
 
-        File eliminar = new File(carpeta);
+        File eliminar = new File(CARPETA);
 
-        if (eliminar.exists()) {
-            eliminar.delete();
+        if (eliminar.delete()) {
             System.out.println("La carpeta ha sido eliminada");
         } else {
             System.out.println("La carpeta no existe");
@@ -122,7 +117,7 @@ public class Archivos {
 
         System.out.println("\nAñade la información aquí: ");
 
-        Path filePath = Paths.get(archivo);
+        Path filePath = Paths.get(ARCHIVO);
         if (!Files.exists(filePath)) {
             // Define los permisos que deseas establecer
             FileAttribute<?> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-r--r--"));
@@ -131,13 +126,9 @@ public class Archivos {
             Files.createFile(filePath, permissions);
         }
 
-        FileWriter escribir = new FileWriter(archivo);
+        FileWriter escribir = new FileWriter(ARCHIVO);
 
         String info = "Datos, datos";
-
-//        Scanner sc = new Scanner(System.in);
-//
-//        String info = sc.nextLine();
 
         escribir.write(info);
         escribir.close();
@@ -145,7 +136,7 @@ public class Archivos {
 
     public void leerArchivo() throws IOException {
 
-        try (FileReader leer = new FileReader(archivo); BufferedReader br = new BufferedReader(leer)) {
+        try (FileReader leer = new FileReader(ARCHIVO); BufferedReader br = new BufferedReader(leer)) {
             StringBuilder contenido = new StringBuilder();
 
             String info;
@@ -158,23 +149,23 @@ public class Archivos {
 
     }
 
-    public void eliminarDirectorios() {
+    public void eliminarDirectorios() throws SecurityException {
 
-        for (int i = directorios.length - 1; i >= 0; i--) {
+        for (int i = DIRECTORIOS.length - 1; i >= 0; i--) {
 
-            String dir = directorios[i];
+            String dir = DIRECTORIOS[i];
 
             File directorio = new File(dir);
 
-            directorio.delete();
-
+            if (directorio.delete()) {
+                System.out.println("Directorio eliminado");
+            } else {
+                System.out.println("El directorio no ha podido eliminarse");
+            }
         }
     }
 
-    public static void main(String[] args) throws IOException {
-
-        Archivos pruebas = new Archivos();
-
+    public static void main(String[] args) {
 
     }
 }
