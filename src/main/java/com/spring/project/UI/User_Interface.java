@@ -7,13 +7,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 import com.spring.project.system_overlord.Archivos;
 
 public class User_Interface extends Application {
 
-    private Archivos archivos = new Archivos();
+    private final Archivos ARCHIVOS = new Archivos();
 
     @Override
     public void start(Stage primaryStage) {
@@ -60,37 +58,37 @@ public class User_Interface extends Application {
         grid.add(logArea, 0, 3, 4, 1);
 
         crearArchivoBtn.setOnAction(e -> {
-            ArchivoTask task = new ArchivoTask(archivos, "crearArchivo", archivoField.getText());
+            ArchivoTask task = new ArchivoTask(ARCHIVOS, "crearArchivo", archivoField.getText());
             task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
             new Thread(task).start();
         });
 
         eliminarArchivoBtn.setOnAction(e -> {
-            ArchivoTask task = new ArchivoTask(archivos, "eliminarArchivo", archivoField.getText());
+            ArchivoTask task = new ArchivoTask(ARCHIVOS, "eliminarArchivo", archivoField.getText());
             task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
             new Thread(task).start();
         });
 
         crearCarpetaBtn.setOnAction(e -> {
-            ArchivoTask task = new ArchivoTask(archivos, "crearCarpeta", carpetaField.getText());
+            ArchivoTask task = new ArchivoTask(ARCHIVOS, "crearCarpeta", carpetaField.getText());
             task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
             new Thread(task).start();
         });
 
         eliminarCarpetaBtn.setOnAction(e -> {
-            ArchivoTask task = new ArchivoTask(archivos, "eliminarCarpeta", carpetaField.getText());
+            ArchivoTask task = new ArchivoTask(ARCHIVOS, "eliminarCarpeta", carpetaField.getText());
             task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
             new Thread(task).start();
         });
 
         crearDirectoriosBtn.setOnAction(e -> {
-            ArchivoTask task = new ArchivoTask(archivos, "crearDirectorios", directorioField.getText());
+            ArchivoTask task = new ArchivoTask(ARCHIVOS, "crearDirectorios", directorioField.getText());
             task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
             new Thread(task).start();
         });
 
         eliminarDirectoriosBtn.setOnAction(e -> {
-            ArchivoTask task = new ArchivoTask(archivos, "eliminarDirectorios", directorioField.getText());
+            ArchivoTask task = new ArchivoTask(ARCHIVOS, "eliminarDirectorios", directorioField.getText());
             task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
             new Thread(task).start();
         });

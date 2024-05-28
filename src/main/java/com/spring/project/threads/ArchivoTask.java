@@ -24,7 +24,7 @@ public class ArchivoTask extends Task<Void> {
                 break;
             case "eliminarArchivo":
                 archivos.eliminarArchivo(path);
-                updateMessage("Archivo eliminado");
+                updateMessage("Archivo eliminado" + path);
                 break;
             case "crearCarpeta":
                 archivos.crearCarpeta(path);
@@ -40,7 +40,7 @@ public class ArchivoTask extends Task<Void> {
                 break;
             case "eliminarDirectorios":
                 archivos.eliminarDirectorios(path);
-                updateMessage("Directorios eliminados");
+                updateMessage("Directorios eliminados" + path);
                 break;
         }
         return null;

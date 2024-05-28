@@ -1,11 +1,6 @@
 package com.spring.project.system_overlord;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
-import java.nio.file.attribute.PosixFilePermissions;
 
 public class Archivos {
 
@@ -117,14 +112,14 @@ public class Archivos {
 
         System.out.println("\nAñade la información aquí: ");
 
-        Path filePath = Paths.get(dir);
-        if (!Files.exists(filePath)) {
-            // Define los permisos que deseas establecer
-            FileAttribute<?> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-r--r--"));
-
-            // Crea el archivo con los permisos especificados
-            Files.createFile(filePath, permissions);
-        }
+//        Path filePath = Paths.get(dir);
+//        if (!Files.exists(filePath)) {
+//            // Define los permisos que deseas establecer
+//            FileAttribute<?> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-r--r--"));
+//
+//            // Crea el archivo con los permisos especificados
+//            Files.createFile(filePath, permissions);
+//        }
 
         FileWriter escribir = new FileWriter(dir);
 

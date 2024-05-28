@@ -61,7 +61,7 @@ public class ArchivosTests {
             System.out.println("Archivo no creado");
         }
 
-        archivos.eliminarArchivo();
+        archivos.eliminarArchivo(TEST_FILE_PATH);
         assertFalse(file.exists());
     }
 
@@ -75,7 +75,7 @@ public class ArchivosTests {
             System.out.println("Directorio no eliminado");
         }
 
-        archivos.eliminarCarpeta();
+        archivos.eliminarCarpeta(TEST_DIR_PATH);
         assertFalse(dir.exists());
     }
 
@@ -119,11 +119,11 @@ public class ArchivosTests {
     @Test
     public void testEscribirYLeerArchivo() throws IOException {
         archivos.crearArchivo(TEST_FILE_PATH);
-        archivos.escribirArchivo();
+        archivos.escribirArchivo("Hola");
         File file = new File(TEST_FILE_PATH);
         assertTrue(file.exists());
 
-        archivos.leerArchivo();
+        archivos.leerArchivo(TEST_FILE_PATH);
     }
 
     @Test
@@ -135,7 +135,7 @@ public class ArchivosTests {
                 System.out.println("Directorios no eliminados");
             }
         }
-        archivos.eliminarDirectorios();
+        archivos.eliminarDirectorios(TEST_DIR_PATH);
         for (String dir : Archivos.DIRECTORIOS) {
             File directory = new File(dir);
             assertFalse(directory.exists());
