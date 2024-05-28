@@ -68,7 +68,7 @@ public class User_Interface extends Application {
         });
 
         eliminarArchivoBtn.setOnAction(e -> {
-            archivos.eliminarArchivo();
+            archivos.eliminarArchivo(archivoField.getText());
             logArea.appendText("Archivo eliminado: " + archivoField.getText() + "\n");
         });
 
@@ -78,7 +78,7 @@ public class User_Interface extends Application {
         });
 
         eliminarCarpetaBtn.setOnAction(e -> {
-            archivos.eliminarCarpeta();
+            archivos.eliminarCarpeta(carpetaField.getText());
             logArea.appendText("Carpeta eliminada: " + carpetaField.getText() + "\n");
         });
 
@@ -88,7 +88,7 @@ public class User_Interface extends Application {
         });
 
         eliminarDirectoriosBtn.setOnAction(e -> {
-            archivos.eliminarDirectorios();
+            archivos.eliminarDirectorios(directorioField.getText());
             logArea.appendText("Directorios eliminados\n");
         });
 

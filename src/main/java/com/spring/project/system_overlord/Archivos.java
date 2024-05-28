@@ -91,9 +91,9 @@ public class Archivos {
         }
     }
 
-    public void eliminarArchivo() {
+    public void eliminarArchivo(String dir) {
 
-        File eliminar = new File(ARCHIVO);
+        File eliminar = new File(dir);
 
         if (eliminar.delete()) {
             System.out.println("El archivo ha sido eliminado");
@@ -102,9 +102,9 @@ public class Archivos {
         }
     }
 
-    public void eliminarCarpeta() {
+    public void eliminarCarpeta(String dir) {
 
-        File eliminar = new File(CARPETA);
+        File eliminar = new File(dir);
 
         if (eliminar.delete()) {
             System.out.println("La carpeta ha sido eliminada");
@@ -113,11 +113,11 @@ public class Archivos {
         }
     }
 
-    public void escribirArchivo() throws IOException {
+    public void escribirArchivo(String dir) throws IOException {
 
         System.out.println("\nAñade la información aquí: ");
 
-        Path filePath = Paths.get(ARCHIVO);
+        Path filePath = Paths.get(dir);
         if (!Files.exists(filePath)) {
             // Define los permisos que deseas establecer
             FileAttribute<?> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-r--r--"));
@@ -126,7 +126,7 @@ public class Archivos {
             Files.createFile(filePath, permissions);
         }
 
-        FileWriter escribir = new FileWriter(ARCHIVO);
+        FileWriter escribir = new FileWriter(dir);
 
         String info = "Datos, datos";
 
@@ -134,9 +134,9 @@ public class Archivos {
         escribir.close();
     }
 
-    public void leerArchivo() throws IOException {
+    public void leerArchivo(String dir) throws IOException {
 
-        try (FileReader leer = new FileReader(ARCHIVO); BufferedReader br = new BufferedReader(leer)) {
+        try (FileReader leer = new FileReader(dir); BufferedReader br = new BufferedReader(leer)) {
             StringBuilder contenido = new StringBuilder();
 
             String info;
@@ -149,11 +149,11 @@ public class Archivos {
 
     }
 
-    public void eliminarDirectorios() throws SecurityException {
+    public void eliminarDirectorios(String dir) throws SecurityException {
 
         for (int i = DIRECTORIOS.length - 1; i >= 0; i--) {
 
-            String dir = DIRECTORIOS[i];
+            dir = DIRECTORIOS[i];
 
             File directorio = new File(dir);
 
@@ -166,6 +166,10 @@ public class Archivos {
     }
 
     public static void main(String[] args) {
+        Archivos archivos = new Archivos();
 
+//        archivos.crearCarpeta("C:\\users\\hellrider\\desktop\\Nueva_carpeta");
+
+        archivos.eliminarCarpeta("C:\\users\\hellrider\\desktop\\Nueva_carpeta");
     }
 }
