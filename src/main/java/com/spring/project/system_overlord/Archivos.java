@@ -166,10 +166,6 @@ public class Archivos {
     }
 
     public static void main(String[] args) {
-        Archivos archivos = new Archivos();
 
-//        archivos.crearCarpeta("C:\\users\\hellrider\\desktop\\Nueva_carpeta");
-
-        archivos.eliminarCarpeta("C:\\users\\hellrider\\desktop\\Nueva_carpeta");
     }
 }

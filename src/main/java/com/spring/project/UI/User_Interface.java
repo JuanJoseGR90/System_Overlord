@@ -1,5 +1,6 @@
 package com.spring.project.UI;
 
+import com.spring.project.threads.ArchivoTask;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -59,37 +60,39 @@ public class User_Interface extends Application {
         grid.add(logArea, 0, 3, 4, 1);
 
         crearArchivoBtn.setOnAction(e -> {
-            try {
-                archivos.crearArchivo(archivoField.getText());
-                logArea.appendText("Archivo creado: " + archivoField.getText() + "\n");
-            } catch (IOException ex) {
-                logArea.appendText("Error al crear archivo: " + ex.getMessage() + "\n");
-            }
+            ArchivoTask task = new ArchivoTask(archivos, "crearArchivo", archivoField.getText());
+            task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
+            new Thread(task).start();
         });
 
         eliminarArchivoBtn.setOnAction(e -> {
-            archivos.eliminarArchivo(archivoField.getText());
-            logArea.appendText("Archivo eliminado: " + archivoField.getText() + "\n");
+            ArchivoTask task = new ArchivoTask(archivos, "eliminarArchivo", archivoField.getText());
+            task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
+            new Thread(task).start();
         });
 
         crearCarpetaBtn.setOnAction(e -> {
-            archivos.crearCarpeta(carpetaField.getText());
-            logArea.appendText("Carpeta creada: " + carpetaField.getText() + "\n");
+            ArchivoTask task = new ArchivoTask(archivos, "crearCarpeta", carpetaField.getText());
+            task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
+            new Thread(task).start();
         });
 
         eliminarCarpetaBtn.setOnAction(e -> {
-            archivos.eliminarCarpeta(carpetaField.getText());
-            logArea.appendText("Carpeta eliminada: " + carpetaField.getText() + "\n");
+            ArchivoTask task = new ArchivoTask(archivos, "eliminarCarpeta", carpetaField.getText());
+            task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
+            new Thread(task).start();
         });
 
         crearDirectoriosBtn.setOnAction(e -> {
-            archivos.crearDirectorios(directorioField.getText());
-            logArea.appendText("Directorios creados: " + directorioField.getText() + "\n");
+            ArchivoTask task = new ArchivoTask(archivos, "crearDirectorios", directorioField.getText());
+            task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
+            new Thread(task).start();
         });
 
         eliminarDirectoriosBtn.setOnAction(e -> {
-            archivos.eliminarDirectorios(directorioField.getText());
-            logArea.appendText("Directorios eliminados\n");
+            ArchivoTask task = new ArchivoTask(archivos, "eliminarDirectorios", directorioField.getText());
+            task.setOnSucceeded(ev -> logArea.appendText(task.getMessage() + "\n"));
+            new Thread(task).start();
         });
 
         Scene scene = new Scene(grid, 600, 400);
