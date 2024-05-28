@@ -1,6 +1,11 @@
 package com.spring.project.system_overlord;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Scanner;
 
 public class Archivos {
@@ -9,8 +14,8 @@ public class Archivos {
         System.out.println("\n>> Inicio de ejecución: ");
     }
 
-    private static String archivo = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\leeme.txt";
-    private static String carpeta = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\carpeta";
+    private static String archivo = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\testfile.txt";
+    private static String carpeta = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\testdir";
     private static String directorio = "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1\\dir2\\dir3";
     static String[] directorios = {
             "C:\\Users\\Hellrider\\Desktop\\Nueva carpeta\\dir1",
@@ -117,13 +122,24 @@ public class Archivos {
 
         System.out.println("\nAñade la información aquí: ");
 
-        FileWriter escribir = new FileWriter(archivo);
-        Scanner sc = new Scanner(System.in);
+        Path filePath = Paths.get(archivo);
+        if (!Files.exists(filePath)) {
+            // Define los permisos que deseas establecer
+            FileAttribute<?> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rw-r--r--"));
 
-        String info = sc.nextLine();
+            // Crea el archivo con los permisos especificados
+            Files.createFile(filePath, permissions);
+        }
+
+        FileWriter escribir = new FileWriter(archivo);
+
+        String info = "Datos, datos";
+
+//        Scanner sc = new Scanner(System.in);
+//
+//        String info = sc.nextLine();
 
         escribir.write(info);
-
         escribir.close();
     }
 
