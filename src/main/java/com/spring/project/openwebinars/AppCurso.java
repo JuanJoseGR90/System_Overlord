@@ -15,6 +15,6 @@ public class AppCurso {
         var controller = context.getBean(EmployeeController.class);
 
         System.out.println(controller.hello());
+        System.out.println(controller.helloCustomer());
     }
-
 }
