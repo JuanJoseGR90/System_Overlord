@@ -1,13 +1,20 @@
 package com.spring.project.openwebinars;
 
+import com.spring.project.openwebinars.controller.EmployeeController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class AppCurso {
 
     public static void main(String[] args) {
-        SpringApplication.run(AppCurso.class, args);
+
+        ApplicationContext context = SpringApplication.run(AppCurso.class, args);
+
+        var controller = context.getBean(EmployeeController.class);
+
+        System.out.println(controller.hello());
     }
 
 }
