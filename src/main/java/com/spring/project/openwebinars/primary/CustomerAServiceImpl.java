@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-//@Primary
+@Primary
 @Service
 public class CustomerAServiceImpl implements CustomerService {
 
