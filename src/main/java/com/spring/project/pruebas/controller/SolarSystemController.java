@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class SolarSystemController {
 
-    @Autowired
     private SolarSystemService solarSystemService;
+
+    public SolarSystemController(SolarSystemService solarSystemService) {
+        this.solarSystemService = solarSystemService;
+    }
 
     public String earth () {
         return this.solarSystemService.earth();
