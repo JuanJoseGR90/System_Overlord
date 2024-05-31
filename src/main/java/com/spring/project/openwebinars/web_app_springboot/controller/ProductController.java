@@ -5,6 +5,8 @@ import com.spring.project.openwebinars.web_app_springboot.repository.ProductRepo
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -35,5 +37,21 @@ public class ProductController {
         model.addAttribute("products", productRepository.findAll());
 
         return "products-list";
+    }
+
+    @GetMapping("/new")
+    public String getForm(Model model) {
+
+        model.addAttribute("products", new Product());
+
+        return "products-list";
+    }
+
+    @PostMapping
+    public String save(@ModelAttribute("product") Product product) {
+
+        this.productRepository.save(product);
+
+        return "redirect:/products";
     }
 }
