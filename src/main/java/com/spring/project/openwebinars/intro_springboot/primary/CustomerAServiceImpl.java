@@ -1,6 +1,5 @@
-package com.spring.project.openwebinars.primary;
+package com.spring.project.openwebinars.intro_springboot.primary;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 

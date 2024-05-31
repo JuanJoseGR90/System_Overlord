@@ -1,7 +1,7 @@
-package com.spring.project.openwebinars.controller;
+package com.spring.project.openwebinars.intro_springboot.controller;
 
-import com.spring.project.openwebinars.primary.CustomerService;
-import com.spring.project.openwebinars.service.EmployeeService;
+import com.spring.project.openwebinars.intro_springboot.primary.CustomerService;
+import com.spring.project.openwebinars.intro_springboot.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

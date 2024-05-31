@@ -1,14 +1,12 @@
-package com.spring.project.pruebas.controller;
+package com.spring.project.pruebas.di.controller;
 
-import com.spring.project.pruebas.service.BioImplService;
-import com.spring.project.pruebas.service.SolarSystemService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.spring.project.pruebas.di.service.SolarSystemService;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class SolarSystemController {
 
-    private SolarSystemService solarSystemService;
+    private final SolarSystemService solarSystemService;
 
     public SolarSystemController(SolarSystemService solarSystemService) {
         this.solarSystemService = solarSystemService;

@@ -1,4 +1,4 @@
-package com.spring.project.openwebinars.primary;
+package com.spring.project.openwebinars.intro_springboot.primary;
 
 import org.springframework.stereotype.Service;
 
