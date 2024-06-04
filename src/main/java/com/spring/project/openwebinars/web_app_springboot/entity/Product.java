@@ -15,6 +15,7 @@ public class Product {
     private Integer quantity;
 
     public Product() {
+        
     }
 
     public Product(Long id, String title, Double price, Integer quantity) {
