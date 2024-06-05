@@ -1,6 +1,6 @@
 package com.spring.project.pruebas.di;
 
-import com.spring.project.openwebinars.intro_springboot.controller.EmployeeController;
+import com.spring.openwebinars.intro_springboot.controller.EmployeeController;
 import com.spring.project.pruebas.di.controller.SolarSystemController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
