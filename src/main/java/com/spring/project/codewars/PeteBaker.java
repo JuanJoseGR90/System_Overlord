@@ -1,5 +1,7 @@
 package com.spring.project.codewars;
 
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 
 public class PeteBaker {
@@ -15,9 +17,58 @@ public class PeteBaker {
     public static int cakes(Map<String, Integer> recipe, Map<String, Integer> available) {
         // TODO: Insert Code Here
 
-        System.out.println(recipe.entrySet().iterator());
+        int recetas = 0;
 
+        ArrayList cantidadIngredientes = new ArrayList();
 
-            return -1;
+        if (recipe.isEmpty() || available.isEmpty()) {
+
+            return recetas = 0;
+
+        } else if (recipe.size() == available.size()) {
+
+            String ingredienteReceta, ingredienteDisponible;
+
+            for (String ingrediente : recipe.keySet()) {
+                ingredienteReceta = ingrediente.toLowerCase(Locale.ROOT).trim();
+
+                for (String ingrediente2 : available.keySet()) {
+                    ingredienteDisponible = ingrediente2.toLowerCase(Locale.ROOT).trim();
+
+                    if (!ingredienteReceta.equals(ingredienteDisponible)) {
+
+                        recetas = 0;
+
+                    } else {
+                        int resultadoOperacion = available.get(ingredienteDisponible) / recipe.get(ingredienteReceta);
+                        /*continuar*/
+                    }
+                }
+            }
+        } else {
+            recetas = 0;
+        }
+
+        return recetas;
+    }
+}
+
+class Prueba {
+
+    public static void main(String[] args) {
+
+        Map<String, Integer> recipe = Map.of(
+                "harina", 2,
+                "azúcar", 1,
+                "huevos", 3
+        );
+
+        Map<String, Integer> available = Map.of(
+                "harina", 2,
+                "azúcar", 2,
+                "leche", 1
+        );
+
+        System.out.println(PeteBaker.cakes(recipe, available));
     }
 }
