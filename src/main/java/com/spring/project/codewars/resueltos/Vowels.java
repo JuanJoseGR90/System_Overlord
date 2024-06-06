@@ -1,7 +1,9 @@
-package com.spring.project.codewars;
+package com.spring.project.codewars.resueltos;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+//  RESUELTO
 
 public class Vowels {
 
@@ -24,14 +26,6 @@ public class Vowels {
         }
 
         return count;
-    }
-}
-
-class Run {
-
-    public static void main(String[] args) {
-
-        System.out.println(Vowels.getCount("Hola mundo"));
     }
 }
 
