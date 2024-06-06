@@ -1,7 +1,6 @@
 package com.spring.project.codewars;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Map;
 
 public class PeteBaker {
@@ -19,37 +18,28 @@ public class PeteBaker {
 
         int recetas = 0;
 
-        ArrayList cantidadIngredientes = new ArrayList();
+        if (recipe.isEmpty() || available.isEmpty() || available.size() < recipe.size()) {
 
-        if (recipe.isEmpty() || available.isEmpty()) {
+            return recetas;
 
-            return recetas = 0;
+        } else {
 
-        } else if (recipe.size() == available.size()) {
+            for (Map.Entry<String, Integer> entry : recipe.entrySet()) {
 
-            String ingredienteReceta, ingredienteDisponible;
+                for (Map.Entry<String, Integer> entry2 : available.entrySet()) {
 
-            for (String ingrediente : recipe.keySet()) {
-                ingredienteReceta = ingrediente.toLowerCase(Locale.ROOT).trim();
+                    if (entry.getKey() == entry2.getKey()) {
 
-                for (String ingrediente2 : available.keySet()) {
-                    ingredienteDisponible = ingrediente2.toLowerCase(Locale.ROOT).trim();
+                        ArrayList<Integer> valor = new ArrayList<>();
+                                valor.add(entry2.getValue() / entry.getValue());
 
-                    if (!ingredienteReceta.equals(ingredienteDisponible)) {
+                                System.out.println();
 
-                        recetas = 0;
-
-                    } else {
-                        int resultadoOperacion = available.get(ingredienteDisponible) / recipe.get(ingredienteReceta);
-                        /*continuar*/
                     }
                 }
             }
-        } else {
-            recetas = 0;
+            return recetas;
         }
-
-        return recetas;
     }
 }
 
@@ -58,15 +48,15 @@ class Prueba {
     public static void main(String[] args) {
 
         Map<String, Integer> recipe = Map.of(
-                "harina", 2,
-                "azúcar", 1,
-                "huevos", 3
+                "harina", 200,
+                "azúcar", 100,
+                "huevos", 300
         );
 
         Map<String, Integer> available = Map.of(
-                "harina", 2,
-                "azúcar", 2,
-                "leche", 1
+                "harina", 2000,
+                "azúcar", 2000,
+                "leche", 3000
         );
 
         System.out.println(PeteBaker.cakes(recipe, available));
