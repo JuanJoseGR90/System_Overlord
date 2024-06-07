@@ -18,9 +18,14 @@ public class PeteBaker {
         // TODO: Insert Code Here
 
         int recetas = 0;
+        String keyAvailable = "";
+        String keyRecipe = "";
+        String keyNumRecipe = "";
+        Integer valueAvailable = 0;
+        Integer valueRecipe = 0;
+        Integer resultado = 0;
+        Integer valueNumReceta = 0;
 
-        Map<String, Integer> ordenadoRecipe = new TreeMap<String, Integer>();
-        Map<String, Integer> ordenadoAvailable = new TreeMap<String, Integer>();
         Map<String, Integer> numRecetas = new TreeMap<String, Integer>();
 
         if (recipe.isEmpty() || available.isEmpty() || available.size() < recipe.size()) {
@@ -29,51 +34,66 @@ public class PeteBaker {
 
         } else {
 
-            ordenadoRecipe.putAll(recipe);
-            ordenadoAvailable.putAll(available);
+            Map<String, Integer> ordenadoRecipe = new TreeMap<String, Integer>(recipe);
+            Map<String, Integer> ordenadoAvailable = new TreeMap<String, Integer>(available);
 
             Iterator<String> itReceta = ordenadoRecipe.keySet().iterator();
             Iterator<String> itAvailable = ordenadoAvailable.keySet().iterator();
             Iterator<String> itNumReceta = ordenadoAvailable.keySet().iterator();
 
-            while (itReceta.hasNext()) {
-                while (itAvailable.hasNext()) {
+            System.out.println("\nRECETA E INGREDIENTES DISPONIBLES: ");
 
-                    String keyRecipe = itReceta.next();
-                    Integer valueRecipe = ordenadoRecipe.get(keyRecipe);
-                    System.out.println("Clave de receta " + keyRecipe + " / " + "Valor receta " + valueRecipe);
+            while (itReceta.hasNext() || itAvailable.hasNext()) {
 
-                    String keyAvailable = itAvailable.next();
-                    Integer valueAvailable = ordenadoAvailable.get(keyAvailable);
-                    System.out.println("Clave de receta " + keyAvailable + " / " + "Valor receta " + valueAvailable);
+                keyRecipe = itReceta.next();
+                valueRecipe = ordenadoRecipe.get(keyRecipe);
 
-                    if (numRecetas.containsKey(keyRecipe) != numRecetas.containsKey(keyAvailable)) {
+                System.out.println("\nClave de receta " + keyRecipe + " / " + "Valor receta " + valueRecipe);
 
-                        return recetas;
-                    }
+                keyAvailable = itAvailable.next();
+                valueAvailable = ordenadoAvailable.get(keyAvailable);
 
-                    Integer resultado = valueAvailable / valueRecipe;
+                System.out.println("\nClave de receta " + keyAvailable + " / " + "Valor receta " + valueAvailable);
+
+                if (numRecetas.containsKey(keyRecipe) != numRecetas.containsKey(keyAvailable)) {
+
+                    return recetas;
+                }
+
+                resultado = valueAvailable / valueRecipe;
+
+                numRecetas.put(keyRecipe, resultado);
+
+                if (!itReceta.hasNext()) {
+                    resultado = valueAvailable / valueRecipe;
+
+                    numRecetas.put(keyRecipe, resultado);
+
+                } else if (!itAvailable.hasNext()) {
+                    resultado = valueAvailable / valueRecipe;
 
                     numRecetas.put(keyRecipe, resultado);
                 }
             }
 
+            System.out.println("\nNUM RECETA: ");
+
             while (itNumReceta.hasNext()) {
-                String keyNumRecipe = itNumReceta.next();
-                Integer valueNumReceta = numRecetas.get(keyNumRecipe);
+
+                keyNumRecipe = itNumReceta.next();
+                valueNumReceta = numRecetas.get(keyNumRecipe);
 
                 if (valueNumReceta == null) {
 
-                    recetas = 0;
-
                     System.out.println("\n-----> Clave de receta: " + keyNumRecipe + " / " + "Valor receta " + valueNumReceta);
-                } else {
 
+                    return recetas;
+
+                } else {
 
                     System.out.println("\n-----> Clave de receta: " + keyNumRecipe + " / " + "Valor receta " + valueNumReceta);
                 }
             }
-
         }
         return recetas;
     }
