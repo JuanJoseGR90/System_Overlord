@@ -1,7 +1,6 @@
 package com.spring.project.codewars;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.*;
 
 public class PeteBaker {
 
@@ -18,26 +17,33 @@ public class PeteBaker {
 
         int recetas = 0;
 
+        Map<String, Integer> ordenadoRecipe = new TreeMap<String, Integer>();
+        Map<String, Integer> ordenadoAvailable = new TreeMap<String, Integer>();
+
         if (recipe.isEmpty() || available.isEmpty() || available.size() < recipe.size()) {
 
             return recetas;
 
         } else {
 
-            for (Map.Entry<String, Integer> entry : recipe.entrySet()) {
+            ordenadoRecipe.putAll(recipe);
+            ordenadoAvailable.putAll(available);
 
-                for (Map.Entry<String, Integer> entry2 : available.entrySet()) {
+            Iterator<String> itReceta = ordenadoRecipe.keySet().iterator();
+            Iterator<String> itAvailable = ordenadoAvailable.keySet().iterator();
 
-                    if (entry.getKey() == entry2.getKey()) {
-
-                        ArrayList<Integer> valor = new ArrayList<>();
-                                valor.add(entry2.getValue() / entry.getValue());
-
-                                System.out.println();
-
-                    }
-                }
+            while (itReceta.hasNext()) {
+                String key = itReceta.next();
+                Integer value = ordenadoRecipe.get(key);
+                System.out.println("Clave de receta " + key + " / " + "Valor receta " + value);
             }
+
+            while (itAvailable.hasNext()) {
+                String key = itAvailable.next();
+                Integer value = ordenadoAvailable.get(key);
+                System.out.println("Clave de receta " + key + " / " + "Valor receta " + value);
+            }
+
             return recetas;
         }
     }
