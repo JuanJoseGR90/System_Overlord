@@ -14,9 +14,20 @@ public class DnaStrand {
      * Example: (input --> output)
      */
 
-    /*public static String makeComplement(String dna) {
+    public static String makeComplement(String dna) {
 
 
 
-    }*/
+
+
+        return dna;
+    }
+}
+
+class Pruebaa {
+
+    public static void main(String[] args) {
+
+        System.out.println(OddOrEven.oddOrEven(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
+    }
 }

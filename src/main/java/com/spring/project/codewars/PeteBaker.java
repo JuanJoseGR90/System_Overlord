@@ -18,15 +18,15 @@ public class PeteBaker {
         // TODO: Insert Code Here
 
         int recetas = 0;
-        String keyAvailable = "";
-        String keyRecipe = "";
-        String keyNumRecipe = "";
-        Integer valueAvailable = 0;
-        Integer valueRecipe = 0;
-        Integer resultado = 0;
-        Integer valueNumReceta = 0;
+        int resultado;
+        String keyAvailable;
+        String keyRecipe;
+        String keyNumRecipe;
+        Integer valueAvailable;
+        Integer valueRecipe;
+        Integer valueNumReceta;
 
-        Map<String, Integer> numRecetas = new TreeMap<String, Integer>();
+        Map<String, Integer> numRecetas = new TreeMap<>();
 
         if (recipe.isEmpty() || available.isEmpty() || available.size() < recipe.size()) {
 
@@ -34,26 +34,24 @@ public class PeteBaker {
 
         } else {
 
-            Map<String, Integer> ordenadoRecipe = new TreeMap<String, Integer>(recipe);
-            Map<String, Integer> ordenadoAvailable = new TreeMap<String, Integer>(available);
+            Map<String, Integer> ordenadoRecipe = new TreeMap<>(recipe);
+            Map<String, Integer> ordenadoAvailable = new TreeMap<>(available);
 
             Iterator<String> itReceta = ordenadoRecipe.keySet().iterator();
             Iterator<String> itAvailable = ordenadoAvailable.keySet().iterator();
             Iterator<String> itNumReceta = ordenadoAvailable.keySet().iterator();
-
-            System.out.println("\nRECETA E INGREDIENTES DISPONIBLES: ");
 
             while (itReceta.hasNext() || itAvailable.hasNext()) {
 
                 keyRecipe = itReceta.next();
                 valueRecipe = ordenadoRecipe.get(keyRecipe);
 
-                System.out.println("\nClave de receta " + keyRecipe + " / " + "Valor receta " + valueRecipe);
+                System.out.println("\nIngrediente de la receta: " + keyRecipe + " y " + "Cantidad: " + valueRecipe);
 
                 keyAvailable = itAvailable.next();
                 valueAvailable = ordenadoAvailable.get(keyAvailable);
 
-                System.out.println("\nClave de receta " + keyAvailable + " / " + "Valor receta " + valueAvailable);
+                System.out.println("\nIngrediente disponible: " + keyAvailable + " y " + "Cantidad: " + valueAvailable);
 
                 if (numRecetas.containsKey(keyRecipe) != numRecetas.containsKey(keyAvailable)) {
 
@@ -76,7 +74,7 @@ public class PeteBaker {
                 }
             }
 
-            System.out.println("\nNUM RECETA: ");
+            System.out.println("\nCantidad de recetas: ");
 
             while (itNumReceta.hasNext()) {
 
